@@ -63,3 +63,4 @@ modules.xml
 # IntelliJ
 out/
 /.idea/misc.xml
+/.idea/kotlinc.xml
