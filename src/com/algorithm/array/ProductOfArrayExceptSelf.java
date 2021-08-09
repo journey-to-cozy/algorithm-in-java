@@ -7,6 +7,7 @@ public class ProductOfArrayExceptSelf {
 	// 1ms
 	public int[] productExceptSelf(int[] nums) {
 		int[] result = new int[nums.length];
+
 		for (int i = 0, j = 1; i < nums.length; i++) {
 			result[i] = j;
 			j *= nums[i];
@@ -21,8 +22,8 @@ public class ProductOfArrayExceptSelf {
 
 	public static void main(String[] args) {
 		ProductOfArrayExceptSelf solution = new ProductOfArrayExceptSelf();
-		int[] nums = {1, 2, 3, 4};
 
+		int[] nums = {1, 2, 3, 4};
 		int[] result = solution.productExceptSelf(nums);
 
 		for (int i : result) {
