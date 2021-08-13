@@ -9,7 +9,7 @@ class BestTimeToTradeStock {
     public static void main(String[] args) {
         BestTimeToTradeStock bestTimeToTradeStock = new BestTimeToTradeStock();
         int result = bestTimeToTradeStock.maxProfit(new int[]{7, 1, 5, 3, 6, 4});
-        System.out.println(result); // 1일 때 사서 6일 때 팔면 5의 이익얼 얻는다.
+        System.out.println(result); // 1일 때 사서 6일 때 팔면 5의 이익을 얻는다.
     }
 
     public int maxProfit(int[] prices) {
