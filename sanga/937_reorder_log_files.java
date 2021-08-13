@@ -1,4 +1,4 @@
-package src;
+package src.sanga;
 
 import java.util.ArrayList;
 import java.util.List;

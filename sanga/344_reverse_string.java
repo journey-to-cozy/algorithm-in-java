@@ -1,4 +1,4 @@
-package src;
+package src.sanga;
 
 class ReverseString {
     public void reverseString(char[] s) {

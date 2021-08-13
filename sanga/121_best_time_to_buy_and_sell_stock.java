@@ -1,4 +1,4 @@
-package src;
+package src.sanga;
 
 /**
  * 한 번의 거래로 낼 수 있는 최대 이익을 산출하라
