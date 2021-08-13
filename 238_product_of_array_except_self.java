@@ -18,27 +18,48 @@ class ProductOfArrayExceptSelf {
 
     // 왼쪽 곱셈 결과에 오른쪽 값을 차례대로 곱셈
     public int[] productExceptSelf(int[] nums) {
+        int N = nums.length;
+
         // 왼쪽부터 곱셈 결과
         // left[i] = nums[0] * .... * nums[i-1]  * nums[i]
         // i.e. nums = [1,2,3,4,5,6,7,8,9,10] 일 때, left =  [1,1,2,6,24,120,...]
-        int[] left = new int[nums.length];
+        int[] left = new int[N];
         left[0] = 1;
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < N; i++) {
             left[i] = left[i - 1] * nums[i - 1];
         }
 
 
         // 오른쪽부터 곱셈한 결과
         // right[i] = nums[i] * nums[i+1]  * .... * nums[len(nums)]
-        int[] right = new int[nums.length];
-        right[nums.length - 1] = 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
+        int[] right = new int[N];
+        right[N - 1] = 1;
+        for (int i = N - 2; i >= 0; i--) {
             right[i] = right[i + 1] * nums[i + 1];
         }
 
-        int[] result = new int[nums.length];
-        for (int i = 0; i < result.length; i++) {
+        int[] result = new int[N];
+        for (int i = 0; i < N; i++) {
             result[i] = left[i] * right[i];
+        }
+
+        return result;
+    }
+
+    public int[] productExceptSelf2(int[] nums) {
+        int N = nums.length;
+
+        int[] result = new int[N];
+        result[0] = 1;
+
+        for (int i = 1; i < N; i++) {
+            result[i] = result[i - 1] * nums[i - 1];
+        }
+
+        int right = 1;
+        for (int i = N - 1; i >= 0; i--) {
+            result[i] *= right;
+            right *= nums[i];
         }
 
         return result;
