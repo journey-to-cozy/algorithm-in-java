@@ -4,8 +4,18 @@ package com.algorithm.linkedlist;
  * 팰린드롬 연결 리스트
  * 연결 리스트가 팰린드롬 구조인지 판별하라.
  */
-
 public class PalindromeLinkedList {
+
+	public static void main(String[] args) {
+		PalindromeLinkedList solution = new PalindromeLinkedList();
+		ListNode head = new ListNode(1);
+		head.next = new ListNode(2);
+		head.next.next = new ListNode(2);
+		head.next.next.next = new ListNode(1);
+
+		System.out.println(solution.isPalindrome(head));
+	}
+
 	/*
 	* two pointers(Runner)
 	* */
@@ -47,10 +57,5 @@ public class PalindromeLinkedList {
 		}
 
 		return tail;
-	}
-
-	public static void main(String[] args) {
-		PalindromeLinkedList solution = new PalindromeLinkedList();
-
 	}
 }
