@@ -12,7 +12,7 @@ class ReverseLinkedList {
         head.next.next = new ListNode(3);
 
         ReverseLinkedList reverseLinkedList = new ReverseLinkedList();
-        reverseLinkedList.reverseList(head);
+        reverseLinkedList.reverseListRecursive(head);
     }
 
 
@@ -28,13 +28,20 @@ class ReverseLinkedList {
         return prev; // 새로운 리스트노드의 head
     }
 
-    // 재귀
-    public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode nextNode = head.next;
-        ListNode reversedListHead = reverseList(nextNode);
-        nextNode.next = head;
-        head.next = null;
-        return reversedListHead;
+    // 재귀 구조
+    public ListNode reverseListRecursive(ListNode head) {
+        if (head == null) return null;
+
+        return reverseList(head, null);
+    }
+
+    private ListNode reverseList(ListNode node, ListNode prev) {
+        if (node == null) {
+            return prev;
+        }
+
+        final ListNode next = node.next;
+        node.next = prev;
+        return reverseList(next, node);
     }
 }

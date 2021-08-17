@@ -1,6 +1,5 @@
 package src.sanga;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 /**
  * 연결리스트를 입력받아, 인접한 두개의 노드를 스왑하라
@@ -13,8 +12,9 @@ class SwapNodesInPairs {
         if ((head == null) || (head.next == null)) return head;
         ListNode first = head;
         ListNode second = first.next;
-        first.next = swapPairs(second.next);
+        first.next = second.next;
         second.next = first;
+        first.next = swapPairs(first.next);
         return second;
     }
 
@@ -23,7 +23,7 @@ class SwapNodesInPairs {
         temp.next = head;
         ListNode current = temp;
 
-        while (current.next!=null && current.next.next!=null){
+        while (current.next != null && current.next.next != null) {
             ListNode first = current.next;
             ListNode second = current.next.next;
             first.next = second.next;
