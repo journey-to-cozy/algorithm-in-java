@@ -37,11 +37,11 @@ class ValidParentheses {
         for (char c : s.toCharArray()) {
             if (left.indexOf(c) > -1) {
                 stack.push(c);
-            } else if (stack.empty() || left.indexOf((char) stack.pop()) != right.indexOf(c)) {
+            } else if (stack.isEmpty() || left.indexOf((char) stack.pop()) != right.indexOf(c)) {
                 return false;
             }
         }
 
-        return stack.empty();
+        return stack.isEmpty();
     }
 }
