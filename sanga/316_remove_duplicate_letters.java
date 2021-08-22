@@ -15,8 +15,8 @@ class RemoveDuplicateLetters {
     }
 
     public String removeDuplicateLetters(String s) {
-        int[] res = new int[26];
-        boolean[] visited = new boolean[26];
+        int[] res = new int[26]; // 입력값 s에서 문자가 몇 번 나타나는지 저장함
+        boolean[] visited = new boolean[26]; // 문자가 현재 스택에 있는지 여부를 저장함
         char[] input = s.toCharArray();
         for (char c : input) {
             res[c - 'a']++;
@@ -27,8 +27,11 @@ class RemoveDuplicateLetters {
         for (char c : input) {
             index = c - 'a';
             res[index]--;
-            if (visited[index])
+            if (visited[index]) // 문자가 현재 스택에 있다면 다음 반복문으로 넘어감
                 continue;
+            // 스택의 맨 마지막 문자(stack.peek())가 현재 탐색문자(c)보다 나중에 나오는 문자고
+            // 입력값에 다음에 또 나타나는 문자일 때
+            // 스택에서 꺼내고 방문하지 않은 것으로 처리해서 추후 스택에 더해질 수 있도록 한다.
             while (!stack.isEmpty() && c < stack.peek() && res[stack.peek() - 'a'] != 0) {
                 visited[stack.pop() - 'a'] = false;
             }
