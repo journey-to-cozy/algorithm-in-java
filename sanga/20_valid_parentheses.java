@@ -44,4 +44,34 @@ class ValidParentheses {
 
         return stack.isEmpty();
     }
+
+
+    public boolean isValid3(String s) {
+        char[] chars = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : chars) {
+            if (stack.isEmpty() && (c == '}' || c == ']' || c == ')'))
+                return false;
+            else if (!stack.isEmpty() && isMatched(stack.peek(), c))
+                stack.pop();
+            else
+                stack.push(c);
+        }
+
+        return stack.isEmpty();
+
+    }
+
+    private boolean isMatched(Character peek, char c) {
+        if (peek == '(' && c == ')')
+            return true;
+        if (peek == '[' && c == ']')
+            return true;
+        if (peek == '{' && c == '}')
+            return true;
+
+        return false;
+    }
+
 }

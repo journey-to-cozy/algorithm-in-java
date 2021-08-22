@@ -1,6 +1,8 @@
 package src.sanga;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -26,6 +28,27 @@ class DailyTemperatures {
         }
 
         return result;
+    }
+
+    public int[] dailyTemperatures2(int[] temperatures) {
+        final int length = temperatures.length;
+        final Map<Integer, Integer> next = new HashMap<>();
+        final Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < length; i++) {
+            while (!stack.empty() && temperatures[stack.peek()] < temperatures[i]) {
+                next.put(stack.peek(), i - stack.pop());
+            }
+
+            stack.push(i);
+        }
+
+        final int[] answer = new int[length];
+        for (int i = 0; i < length; i++) {
+            answer[i] = next.getOrDefault(i, 0);
+        }
+
+        return answer;
     }
 
 }
