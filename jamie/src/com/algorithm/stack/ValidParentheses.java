@@ -20,7 +20,6 @@ public class ValidParentheses {
 		}
 
 		return stack.isEmpty();
-
 	}
 
 	private boolean isMatched(Character peek, char c) {
@@ -32,6 +31,22 @@ public class ValidParentheses {
 			return true;
 
 		return false;
+	}
+
+	// 코코 코드
+	public boolean isValid2(String s) {
+		Stack<Character> stack = new Stack<>();
+		String left = "([{";
+		String right = ")]}";
+
+		for (char c : s.toCharArray()) {
+			if (left.indexOf(c) > -1) {
+				stack.push(c);
+			} else if (stack.isEmpty() || left.indexOf((char) stack.pop()) != right.indexOf(c)) {
+				return false;
+			}
+		}
+		return stack.isEmpty();
 	}
 
 	public static void main(String[] args) {
