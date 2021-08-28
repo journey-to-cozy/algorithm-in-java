@@ -3,15 +3,15 @@ package com.algorithm.linkedlist;
 /**
  * Definition for singly-linked list.
  */
-class ListNode {
-	int val;
-	ListNode next;
+public class ListNode {
+	public int val;
+	public ListNode next;
 
 	ListNode() {
 
 	}
 
-	ListNode(int val) {
+	public ListNode(int val) {
 		this.val = val;
 	}
 
