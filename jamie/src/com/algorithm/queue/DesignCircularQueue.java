@@ -7,7 +7,6 @@ public class DesignCircularQueue {
 
 	class MyCircularQueue {
 		final int[] array;
-		// int front, rear = -1, len = 0;
 
 		int front;
 		int rear = -1;
@@ -18,24 +17,24 @@ public class DesignCircularQueue {
 		}
 
 		public boolean enQueue(int value) {
-			if (!isFull()) {
-				rear = (rear + 1) % array.length;
-				array[rear] = value;
-				len++;
-
-				return true;
-			} else
+			if (isFull())
 				return false;
+
+			rear = (rear + 1) % array.length;
+			array[rear] = value;
+			len++;
+
+			return true;
 		}
 
 		public boolean deQueue() {
-			if (!isEmpty()) {
-				front = (front + 1) % array.length;
-				len--;
-
-				return true;
-			} else
+			if (isEmpty())
 				return false;
+
+			front = (front + 1) % array.length;
+			len--;
+
+			return true;
 		}
 
 		public int Front() {

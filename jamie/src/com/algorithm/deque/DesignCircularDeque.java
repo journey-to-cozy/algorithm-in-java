@@ -11,7 +11,8 @@ public class DesignCircularDeque {
 		public MyCircularDeque(int k) {
 			queue = new int[k];
 			front = -1;
-			rear = -1;
+			rear = k - 1;
+			// rear = -1;
 			count = 0;
 		}
 
@@ -20,10 +21,11 @@ public class DesignCircularDeque {
 			if (isFull()) {
 				return false;
 			}
+
 			front = (front - 1 + queue.length) % queue.length;
-			if (isEmpty()) {
-				rear = front;
-			}
+			// if (isEmpty()) {
+			// 	rear = front;
+			// }
 			queue[front] = value;
 			count++;
 
@@ -37,10 +39,9 @@ public class DesignCircularDeque {
 			}
 
 			rear = (rear + 1) % queue.length;
-			if (isEmpty()) {
-				front = rear;
-			}
-
+			// if (isEmpty()) {
+			// 	front = rear;
+			// }
 			queue[rear] = value;
 			count++;
 
@@ -54,7 +55,7 @@ public class DesignCircularDeque {
 			}
 			front = (front + 1) % queue.length;
 			count--;
-			
+
 			return true;
 		}
 
@@ -65,7 +66,7 @@ public class DesignCircularDeque {
 			}
 			rear = (rear - 1 + queue.length) % queue.length;
 			count--;
-			
+
 			return true;
 		}
 

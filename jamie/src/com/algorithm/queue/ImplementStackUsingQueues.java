@@ -26,18 +26,30 @@ public class ImplementStackUsingQueues {
 			queue.add(x);
 
 			int size = queue.size();
-			while (size-- > 1) {
+			// while (size-- > 1) {
+			// 	queue.add(queue.poll());
+			// }
+			while (size > 1) {
 				queue.add(queue.poll());
+				size--;
 			}
 		}
 
 		/** Removes the element on top of the stack and returns that element. */
 		public int pop() {
+			/**
+			 * remove(): 예외 발생
+			 * poll(): return null
+			 */
 			return queue.poll();
 		}
 
 		/** Get the top element. */
 		public int top() {
+			/**
+			 * element(): 예외 발생
+			 * peek(): null 반환
+			 */
 			return queue.peek();
 		}
 

@@ -15,6 +15,8 @@ public class MergeKSortedLists {
 			}
 		});
 
+		// Queue<ListNode> heap = new PriorityQueue<>((a, b) -> a.val - b.val);
+
 		if (lists == null) return null;
 
 		ListNode head = new ListNode(0);
@@ -24,6 +26,7 @@ public class MergeKSortedLists {
 			if (node != null)
 				heap.offer(node);
 		}
+
 		while (!heap.isEmpty()) {
 			tail.next = heap.poll();
 			tail = tail.next;
