@@ -11,40 +11,52 @@ import java.util.Stack;
  * empty(): 큐가 비어 있는지 여부를 리턴한다.
  */
 public class ImplementQueueUsingStacks {
+	public static void main(String[] args) {
+		MyQueue queue = new MyQueue();
+		queue.push(1);
+		queue.push(2);
+		queue.push(3);
+		queue.push(4);
+		queue.push(5);
+		System.out.println(queue.peek());
+		System.out.println(queue.pop());
+		System.out.println(queue.peek());
+		System.out.println(queue.empty());
+	}
+}
 
-	class MyQueue {
-		Stack<Integer> input;
-		Stack<Integer> output;
+class MyQueue {
+	Stack<Integer> input;
+	Stack<Integer> output;
 
-		/** Initialize your data structure here. */
-		public MyQueue() {
-			input = new Stack<>();
-			output = new Stack<>();
+	/** Initialize your data structure here. */
+	public MyQueue() {
+		input = new Stack<>();
+		output = new Stack<>();
+	}
+
+	/** Push element x to the back of queue. */
+	public void push(int x) {
+		input.push(x);
+	}
+
+	/** Removes the element from in front of queue and returns that element. */
+	public int pop() {
+		peek();
+		return output.pop();
+	}
+
+	/** Get the front element. */
+	public int peek() {
+		if (output.empty()) {
+			while (!input.empty())
+				output.push(input.pop());
 		}
+		return output.peek();
+	}
 
-		/** Push element x to the back of queue. */
-		public void push(int x) {
-			input.push(x);
-		}
-
-		/** Removes the element from in front of queue and returns that element. */
-		public int pop() {
-			peek();
-			return output.pop();
-		}
-
-		/** Get the front element. */
-		public int peek() {
-			if (output.empty()) {
-				while (!input.empty())
-					output.push(input.pop());
-			}
-			return output.peek();
-		}
-
-		/** Returns whether the queue is empty. */
-		public boolean empty() {
-			return input.empty() && output.empty();
-		}
+	/** Returns whether the queue is empty. */
+	public boolean empty() {
+		return input.empty() && output.empty();
 	}
 }
