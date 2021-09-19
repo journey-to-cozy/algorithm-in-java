@@ -27,12 +27,29 @@ public class Permutations {
 	private void dfs(List<List<Integer>> result, List<Integer> list, int[] nums) {
 		if (list.size() == nums.length) {
 			result.add(new ArrayList<>(list));
-		} else {
-			for (int i = 0; i <= list.size(); i++) {
-				list.add(i, nums[list.size()]);
-				dfs(result, list, nums);
-				list.remove(i);
-			}
+			return;
+		}
+
+		for (int i = 0; i <= list.size(); i++) {
+			list.add(i, nums[list.size()]);
+			dfs(result, list, nums);
+			list.remove(i);
+		}
+	}
+
+	// coco's dfs
+	private void dfs2(List<List<Integer>> list, List<Integer> tempList, int[] nums) {
+		if (tempList.size() == nums.length) {
+			list.add(new ArrayList<>(tempList));
+			return;
+		}
+
+		for (int num : nums) {
+			if (tempList.contains(num))
+				continue;
+			tempList.add(num);
+			dfs2(list, tempList, nums);
+			tempList.remove(tempList.size() - 1);
 		}
 	}
 }

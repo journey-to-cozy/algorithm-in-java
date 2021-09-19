@@ -33,12 +33,13 @@ public class LetterCombinationsOfAPhoneNumber {
 			return;
 		}
 
-		String str = chars[digits.charAt(index) - '0'];
+		String str = chars[digits.charAt(index) - '0']; // '0' == 80
 
 		for (char c : str.toCharArray()) {
 			sb.append(c);
 			dfs(result, sb, digits, index + 1);
 			sb.setLength(sb.length() - 1);
+			// sb.deleteCharAt(sb.length() - 1);
 		}
 	}
 

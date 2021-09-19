@@ -16,16 +16,16 @@ public class CombinationSum {
 		System.out.println(solution.combinationSum(candidates, target));
 	}
 
-	List<List<Integer>> result = new ArrayList<>();
-
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
+		List<List<Integer>> result = new ArrayList<>();
 		Arrays.sort(candidates);
-		dfs(new ArrayList<>(), candidates, 0, target);
+		// dfs(result, new ArrayList<>(), candidates, 0, target);
+		dfs2(result, new ArrayList<>(), candidates, target, 0);
 
 		return result;
 	}
 
-	private void dfs(List<Integer> current, int[] candidates, int index, int target) {
+	private void dfs(List<List<Integer>> result, List<Integer> current, int[] candidates, int index, int target) {
 		for (int i = index; i < candidates.length; i++) {
 			List<Integer> temp = new ArrayList<>(current);
 			if (candidates[i] == target) {
@@ -34,11 +34,58 @@ public class CombinationSum {
 				break;
 			} else if (candidates[i] < target) {
 				temp.add(candidates[i]);
-				dfs(new ArrayList<>(temp), candidates, i, target - candidates[i]);
+				dfs(result, new ArrayList<>(temp), candidates, i, target - candidates[i]);
 			} else {
 				break;
 			}
 		}
 		return;
+	}
+
+	private void dfs2(List<List<Integer>> list, List<Integer> current, int[] candidates, int target, int index) {
+		if (target < 0) return;
+		if (target == 0) {
+			list.add(new ArrayList<>(current));
+			return;
+		}
+
+		for (int i = index; i < candidates.length; i++) {
+			current.add(candidates[i]);
+			dfs2(list, current, candidates,target - candidates[i], i);
+			current.remove(current.size() - 1);
+		}
+	}
+
+	private void dfs3(List<List<Integer>> result, List<Integer> current, int[] candidates, int index, int target) {
+		for (int i = index; i < candidates.length; i++) {
+			List<Integer> temp = new ArrayList<>(current);
+			int candidate = candidates[i];
+
+			if (candidate > target) break;
+
+			temp.add(candidate);
+
+			if (candidate == target) {
+				result.add(temp);
+				continue;
+			}
+
+			dfs3(result, temp, candidates, i, target - candidate);
+		}
+	}
+
+
+	private void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] candidates, int remain, int start) {
+		if (remain < 0) return;
+		if (remain == 0) {
+			list.add(new ArrayList<>(tempList));
+			return;
+		}
+
+		for (int i = start; i < candidates.length; i++) {
+			tempList.add(candidates[i]);
+			backtrack(list, tempList, candidates, remain - candidates[i], i); // 중복을 허용하므로 i + 1이 아님
+			tempList.remove(tempList.size() - 1);
+		}
 	}
 }
