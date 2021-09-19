@@ -36,4 +36,19 @@ class Permutations {
             tempList.remove(tempList.size() - 1);
         }
     }
+
+
+    private void dfs2(List<List<Integer>> result, List<Integer> list, int[] nums) {
+        if (list.size() == nums.length) {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = 0; i <= list.size(); i++) {
+            list.add(i, nums[list.size()]);
+            dfs2(result, list, nums);
+            list.remove(i);
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
+ * Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
  * https://leetcode.com/problems/top-k-frequent-elements/
  */
 class TopKFrequentElements {
@@ -13,6 +14,10 @@ class TopKFrequentElements {
         TopKFrequentElements topKFrequentElements = new TopKFrequentElements();
         topKFrequentElements.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2); // [1,2]
         topKFrequentElements.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 3); // [1,2,3]
+        int[] result = topKFrequentElements.topKFrequent(new int[]{1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 7}, 4); // [1,2,3,5]
+        for (int i : result) {
+            System.out.println(i);
+        }
     }
 
     public int[] topKFrequent(int[] nums, int k) {

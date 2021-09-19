@@ -7,7 +7,7 @@ import java.util.*;
  */
 class LetterCombinations {
 
-    static String[] KEYPAD = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    private String[] keypad = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
     public static void main(String[] args) {
         LetterCombinations letterCombinations = new LetterCombinations();
@@ -21,12 +21,12 @@ class LetterCombinations {
         if(digits.isEmpty()) return new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         List<String> res = new ArrayList<>();
-        dfs(sb, 0, digits, KEYPAD, res);
+        dfs(sb, 0, digits, res);
 
         return res;
     }
 
-    private void dfs(StringBuilder sb, int index, String digits, String[] keypad, List<String> res) {
+    private void dfs(StringBuilder sb, int index, String digits, List<String> res) {
         if (index == digits.length()) {
             res.add(sb.toString());
             return;
@@ -35,7 +35,7 @@ class LetterCombinations {
         String options = keypad[digits.charAt(index) - '0'];
         for (char option : options.toCharArray()) {
             sb.append(option);
-            dfs(sb, index + 1, digits, keypad, res);
+            dfs(sb, index + 1, digits, res);
             sb.deleteCharAt(sb.length() - 1);
         }
     }

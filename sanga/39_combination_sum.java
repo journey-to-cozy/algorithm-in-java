@@ -33,10 +33,38 @@ class CombinationSum {
             return;
         }
 
-        for(int i=start; i<candidates.length; i++){
+        for (int i = start; i < candidates.length; i++) {
             tempList.add(candidates[i]);
-            backtrack(list, tempList, candidates, remain-candidates[i], i); // 중복을 허용하므로 i+1이 아님
+            backtrack(list, tempList, candidates, remain - candidates[i], i); // 중복을 허용하므로 i+1이 아님
             tempList.remove(tempList.size() - 1);
+        }
+    }
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        Arrays.sort(candidates);
+        dfs(result, new ArrayList<>(), candidates, 0, target);
+
+        return result;
+    }
+
+    private void dfs(List<List<Integer>> result , List<Integer> current, int[] candidates, int index, int target) {
+        for (int i = index; i < candidates.length; i++) {
+            List<Integer> temp = new ArrayList<>(current);
+
+            int candidate = candidates[i];
+
+            if (candidate > target) break;
+
+            temp.add(candidate);
+
+            if (candidate== target) {
+                result.add(temp);
+                continue;
+            }
+
+            dfs(result, temp, candidates, i, target - candidate);
         }
     }
 
