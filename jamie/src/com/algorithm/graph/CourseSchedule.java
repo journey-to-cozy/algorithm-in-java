@@ -12,9 +12,11 @@ public class CourseSchedule {
 	public static void main(String[] args) {
 		CourseSchedule solution = new CourseSchedule();
 		int numCourses = 2;
-		int[][] prerequisites = {{1, 0}};
+		int[][] prerequisites = {{1, 0}}; // true
+		int[][] prerequisites2 = {{1, 0}, {0, 1}}; // false
 
 		System.out.println(solution.canFinish(numCourses, prerequisites));
+		System.out.println(solution.canFinish(numCourses, prerequisites2));
 	}
 
 	public boolean canFinish(int numCourses, int[][] prerequisites) {

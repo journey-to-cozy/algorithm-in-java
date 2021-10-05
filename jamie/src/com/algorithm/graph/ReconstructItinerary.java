@@ -1,6 +1,7 @@
 package com.algorithm.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,35 @@ import java.util.Map;
  * 여러 일정이 있는 경우 사전 어휘 순으로 방문한다.
  */
 public class ReconstructItinerary {
+	public static void main(String[] args) {
+		List<List<String>> route = new ArrayList() {{
+			add(Arrays.asList("MUC", "LHR"));
+			add(Arrays.asList("JFK", "MUC"));
+			add(Arrays.asList("SFO", "SJC"));
+			add(Arrays.asList("LHR", "SFO"));
+		}};
+
+		List<List<String>> route2 = new ArrayList() {{
+			add(Arrays.asList("JFK", "SFO"));
+			add(Arrays.asList("JFK", "ATL"));
+			add(Arrays.asList("SFO", "ATL"));
+			add(Arrays.asList("ATL", "JFK"));
+			add(Arrays.asList("ATL", "SFO"));
+		}};
+
+		printResult(route); // JFK-MUC-LHR-SFO-SJC
+		// printResult(route2); // JFK-ATL-JFK-SFO-ATL-SFO
+	}
+
+	private static void printResult(List<List<String>> route) {
+		ReconstructItinerary reconstructItinerary = new ReconstructItinerary();
+		List<String> result = reconstructItinerary.findItinerary(route);
+
+		for (String s : result) {
+			System.out.println(s);
+		}
+		System.out.println();
+	}
 
 	List<String> result;
 
@@ -28,7 +58,7 @@ public class ReconstructItinerary {
 
 		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
 			Collections.sort(entry.getValue());
-		}
+		} // 그래프 구성
 
 		findItineraryFrom("JFK", map, new ArrayList<>(), tickets.size());
 		result.add(0, "JFK");

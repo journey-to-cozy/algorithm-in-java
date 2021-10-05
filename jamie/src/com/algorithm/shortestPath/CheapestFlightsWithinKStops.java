@@ -45,7 +45,7 @@ public class CheapestFlightsWithinKStops {
 			visited.put(city, stops);
 
 			if (stops == k)
-				continue;
+				continue; // 경유지가 k와 같으면 pq에 offer하지 않음
 
 			for (int val : map.get(city).keySet()) {
 				if (!visited.containsKey(val) || stops < visited.get(val))
