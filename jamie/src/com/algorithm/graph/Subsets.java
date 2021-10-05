@@ -1,7 +1,6 @@
 package com.algorithm.graph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,7 +16,6 @@ public class Subsets {
 	}
 
 	public List<List<Integer>> subsets(int[] nums) {
-		Arrays.sort(nums);
 		List<List<Integer>> result = new ArrayList<>();
 		dfs(nums, 0, new ArrayList<>(), result);
 
