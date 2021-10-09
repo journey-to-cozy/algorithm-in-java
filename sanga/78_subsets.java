@@ -9,6 +9,12 @@ import java.util.List;
  */
 class SubSets {
 
+    public static void main(String[] args) {
+        SubSets subSets = new SubSets();
+        int[] nums = {1, 2, 3};
+        System.out.println(subSets.subsets(nums));
+    }
+
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
         backtrack(list, new ArrayList<>(), nums, 0);

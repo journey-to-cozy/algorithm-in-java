@@ -11,8 +11,9 @@ class CheapestFlightsWithinKStops {
 
     public static void main(String[] args) {
         CheapestFlightsWithinKStops cheapestFlightsWithinKStops = new CheapestFlightsWithinKStops();
-        cheapestFlightsWithinKStops.findCheapestPrice(3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 0, 2, 1); // 200
-        cheapestFlightsWithinKStops.findCheapestPrice(3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 2, 0, 0); // 500
+        System.out.println(cheapestFlightsWithinKStops.findCheapestPrice(3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 0, 2, 0)); // 500
+        System.out.println(cheapestFlightsWithinKStops.findCheapestPrice(3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 0, 2, 1)); // 200
+        System.out.println(cheapestFlightsWithinKStops.findCheapestPrice(3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 2, 0, 0)); // -1
     }
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
