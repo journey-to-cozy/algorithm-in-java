@@ -8,8 +8,25 @@ import java.util.LinkedList;
  * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
  */
 public class Codec {
+
 	private static final String spliter = ",";
 	private static final String NN = "X";
+
+	public static void main(String[] args) {
+		Codec ser = new Codec();
+		Codec deser = new Codec();
+
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		TreeNode rightTreeNode = new TreeNode(3);
+		root.right = rightTreeNode;
+		rightTreeNode.left = new TreeNode(4);
+		rightTreeNode.right = new TreeNode(5);
+
+		String treeString = ser.serialize(root);
+		System.out.println(treeString);
+		TreeNode ans = deser.deserialize(treeString);
+	}
 
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {

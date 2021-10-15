@@ -2,7 +2,20 @@ package com.algorithm.tree;
 
 public class LongestUnivaluePath {
 
-	int result = 0;
+	int result;
+
+	public static void main(String[] args) {
+
+		TreeNode childNode1 = new TreeNode(1);
+		TreeNode childNode2 = new TreeNode(1);
+		TreeNode childNode3 = new TreeNode(5);
+		TreeNode left = new TreeNode(4, childNode1, childNode2);
+		TreeNode right = new TreeNode(5, null, childNode3);
+		TreeNode root = new TreeNode(5, left, right);
+
+		LongestUnivaluePath solution = new LongestUnivaluePath();
+		System.out.println(solution.longestUnivaluePath(root));
+	}
 
 	public int longestUnivaluePath(TreeNode root) {
 		if (root == null)

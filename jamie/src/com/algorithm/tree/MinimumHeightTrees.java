@@ -9,6 +9,18 @@ import java.util.List;
  * https://leetcode.com/problems/minimum-height-trees/
  */
 public class MinimumHeightTrees {
+
+	public static void main(String[] args) {
+		MinimumHeightTrees solution = new MinimumHeightTrees();
+		int[][] edges = {{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}};
+
+		List<Integer> result = solution.findMinHeightTrees(6, edges);
+
+		for (Integer i : result) {
+			System.out.println(i);
+		}
+	}
+
 	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
 		if (n == 1)
 			return Arrays.asList(0);
@@ -19,15 +31,18 @@ public class MinimumHeightTrees {
 
 		List<Integer> leaves = new LinkedList<>();
 
+		// 첫번째 리프 노드 추가
 		for (int i = 0; i < inLinks.length; i++) {
 			if (inLinks[i] == 1)
 				leaves.add(i);
 		}
 
+		// 루트 노드만 남을 때까지 반복 제거
 		while (n > 2) {
 			List<Integer> newLeaves = new ArrayList<>();
-			for (int leave : leaves) {
-				for (int nb : adj.get(leave)) {
+
+			for (int leaf : leaves) {
+				for (int nb : adj.get(leaf)) {
 					inLinks[nb]--;
 					if (inLinks[nb] == 1)
 						newLeaves.add(nb);
@@ -47,7 +62,7 @@ public class MinimumHeightTrees {
 
 		for (int[] edge : edges) {
 			adj.get(edge[0]).add(edge[1]);
-			adj.get(edge[1]).add(edge[0]);
+			adj.get(edge[1]).add(edge[0]); // 양방향 그래프 구성
 			inLinks[edge[0]]++;
 			inLinks[edge[1]]++;
 		}

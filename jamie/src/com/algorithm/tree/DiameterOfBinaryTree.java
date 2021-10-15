@@ -8,6 +8,15 @@ public class DiameterOfBinaryTree {
 	int max = 0;
 
 	public static void main(String[] args) {
+
+		TreeNode childNode1 = new TreeNode(15);
+		TreeNode childNode2 = new TreeNode(7);
+		TreeNode right = new TreeNode(20, childNode1, childNode2);
+		TreeNode left = new TreeNode(9);
+		TreeNode root = new TreeNode(3, left, right);
+
+		DiameterOfBinaryTree solution = new DiameterOfBinaryTree();
+		System.out.println(solution.diameterOfBinaryTree(root));
 	}
 
 	public int diameterOfBinaryTree(TreeNode root) {
