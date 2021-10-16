@@ -11,6 +11,13 @@ import java.util.Queue;
  */
 class MinimumHeightTrees {
 
+    public static void main(String[] args) {
+        MinimumHeightTrees minimumHeightTrees = new MinimumHeightTrees();
+        //minimumHeightTrees.findMinHeightTrees(4, new int[][]{{1, 0}, {1, 2}, {1, 3}});
+        //minimumHeightTrees.findMinHeightTrees(6, new int[][]{{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}});
+        minimumHeightTrees.findMinHeightTrees2(10, new int[][]{{0, 2}, {1, 2}, {2, 3}, {2, 4}, {3, 5}, {5, 9}, {4, 6}, {4, 7}, {7, 8}});
+    }
+
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         List<Integer> res = new ArrayList<>();
         if (n <= 0) return res;
@@ -20,7 +27,7 @@ class MinimumHeightTrees {
             return res;
         }
 
-        int[] degree = new int[n];
+        int[] degree = new int[n+1];
         List<List<Integer>> graph = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
@@ -65,35 +72,41 @@ class MinimumHeightTrees {
         List<Integer> leaves = new ArrayList<>();
 
         if (n == 0) return leaves;
-        else if (n == 1) {
+        if (n == 1) {
             leaves.add(0);
             return leaves;
         }
 
-        List<Integer>[] lists = new ArrayList[n];
-        for (int i = 0; i < n; i++) lists[i] = new ArrayList<>();
-
-        for (int[] e : edges) {
-            int v1 = e[0], v2 = e[1];
-            lists[v1].add(v2);
-            lists[v2].add(v1);
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < n; i++) if (lists[i].size() == 1) leaves.add(i);
+        for (int[] e : edges) {
+            graph.get(e[0]).add(e[1]);
+            graph.get(e[1]).add(e[0]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (graph.get(i).size() == 1){
+                leaves.add(i);
+            }
+        }
 
         int count = n;
         while (count > 2) {
             count -= leaves.size();
             List<Integer> newLeaves = new ArrayList<>();
             for (Integer leaf : leaves) { // for all current leaves
-                for (Integer toRemove : lists[leaf]) { // for all current leaves' subtree
-                    lists[toRemove].remove(Integer.valueOf(leaf)); // remove leaf
-                    if (lists[toRemove].size() == 1)
+                for (Integer toRemove : graph.get(leaf)) { // for all current leaves' subtree
+                    graph.get(toRemove).remove(Integer.valueOf(leaf)); // remove leaf
+                    if (graph.get(toRemove).size() == 1)
                         newLeaves.add(toRemove);
                 }
             }
             leaves = newLeaves;
         }
+
         return leaves;
     }
 
