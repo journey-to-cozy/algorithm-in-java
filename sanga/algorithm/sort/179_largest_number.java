@@ -2,6 +2,7 @@ package src.sanga.algorithm.sort;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * 항목들을 조합하여 만들 수 있는 가장 큰 수를 출력하라.
@@ -35,7 +36,7 @@ class LargestNumber {
             result.append(s);
         }
 
-        if (result.length() > 0 && result.charAt(0) == '0'){
+        if (result.length() > 0 && result.charAt(0) == '0') {
             return "0";
         }
 
@@ -48,6 +49,16 @@ class LargestNumber {
             return (o2 + o1).compareTo(o1 + o2);
         }
     }
+
+    private String largestNumber2(int[] nums) {
+        String result = Arrays.stream(nums)
+                .mapToObj(String::valueOf)
+                .sorted((a, b) -> (b + a).compareTo(a + b))
+                .collect(Collectors.joining(""));
+
+        return result.startsWith("00") ? "0" : result;
+    }
+
 
 }
 
