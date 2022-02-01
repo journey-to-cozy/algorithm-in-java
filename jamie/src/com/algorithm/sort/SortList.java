@@ -24,6 +24,7 @@ public class SortList {
 			fast = fast.next.next;
 		}
 
+		assert prev != null;
 		prev.next = null;
 
 		// sort each half
@@ -32,6 +33,18 @@ public class SortList {
 
 		// merge node1 and node2
 		return merge(node1, node2);
+	}
+
+	private ListNode getMid(ListNode head) {
+		ListNode slow = head;
+		ListNode fast = head.next;
+
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		return slow;
 	}
 
 	private ListNode merge(ListNode node1, ListNode node2) {

@@ -18,7 +18,7 @@ public class InsertionSortList {
 		ListNode dummyHead = new ListNode(0);
 		dummyHead.next = head;
 
-		while (head != null && head.next != null) {
+		while (head.next != null) {
 			if (head.val <= head.next.val) {
 				head = head.next;
 			} else {
