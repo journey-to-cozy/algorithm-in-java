@@ -30,4 +30,26 @@ class TwoSumInputArrayIsSorted {
         return new int[]{left + 1, right + 1};
     }
 
+
+    public int[] twoSum2(int[] numbers, int target) {
+        int start = 0;
+        int end = numbers.length -1;
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            int sum = numbers[start] + numbers[end];
+
+            if (sum == target)
+                return new int[]{start + 1, end + 1};
+
+            else if (sum < target)
+                start = (numbers[mid] + numbers[end] < target) ? mid : start + 1;
+
+            else
+                end = (numbers[start] + numbers[mid] > target) ? mid : end - 1;
+        }
+
+        return new int[]{-1, -1};
+    }
+
 }
