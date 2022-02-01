@@ -5,6 +5,13 @@ package com.algorithm.binarySearch;
  * 특정 피벗을 기준으로 회전하여 정렬된 배열에서 target 값의 인덱스를 출력하라.
  */
 public class SearchInRotatedSortedArray {
+	public static void main(String[] args) {
+		SearchInRotatedSortedArray searchInRotatedSortedArray = new SearchInRotatedSortedArray();
+		searchInRotatedSortedArray.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 1);// 5
+		searchInRotatedSortedArray.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 3); // -1
+		searchInRotatedSortedArray.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 6); // 2
+		searchInRotatedSortedArray.search(new int[]{1}, 0); // -1
+	}
 
 	public int search(int[] nums, int target) {
 		if (nums == null || nums.length == 0)

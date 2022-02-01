@@ -68,4 +68,8 @@ public class KClosestPointsToOrigin {
 
 		return result;
 	}
+
+	private int squaredDistance(int[] point) {
+		return point[0] * point[0] + point[1] * point[1];
+	}
 }
