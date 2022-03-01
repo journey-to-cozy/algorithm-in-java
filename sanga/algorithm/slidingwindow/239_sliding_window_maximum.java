@@ -10,7 +10,7 @@ import java.util.Deque;
 class SlidingWindowMaximum {
     public static void main(String[] args) {
         SlidingWindowMaximum slidingWindowMaximum = new SlidingWindowMaximum();
-        int[] result = slidingWindowMaximum.maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3);// [3,3,5,5,6,7]
+        int[] result = slidingWindowMaximum.maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3); // [3,3,5,5,6,7]
     }
 
     public int[] maxSlidingWindow(int[] nums, int k) {
